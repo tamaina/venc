@@ -3,6 +3,7 @@
     <input type="file" ref="input" @change="onInputChange">
     <video :class="$style.video" :src="sourceUrl" controls />
     <video :class="$style.video" :src="video" controls />
+    <audio :src="audio" controls />
     <button @click="transcode">Start</button>
     <button @click="logs = []">Purge Logs</button>
     <div :class="$style.logs">
@@ -22,6 +23,7 @@ import { computed, ref } from 'vue'
 const VOUTDIR = './out'
 
 const video = ref('')
+const audio = ref('')
 const source = ref(null as File | null)
 const input = ref<HTMLInputElement>();
 const logs = ref<string[]>(['Click Start to Transcode']);
@@ -42,9 +44,11 @@ async function transcode() {
   logs.value.push('Start transcoding')
   await ffmpeg.createDir(VOUTDIR);
   await ffmpeg.writeFile('test.avi', new Uint8Array(await source.value.arrayBuffer()))
-  const segCode = await ffmpeg.exec(['-i', 'test.avi', '-map', '0', '-c', 'copy', '-flags', '+global_header', '-f', 'segment', '-segment_time', '2', '-segment_format_options', 'movflags=+faststart', '-reset_timestamps', '1', `${VOUTDIR}/%10d.mp4`])
+  const segCode = await ffmpeg.exec(['-i', 'test.avi', '-map', '0', '-c', 'copy', '-an', '-flags', '+global_header', '-f', 'segment', '-segment_time', '2', '-segment_format_options', 'movflags=+faststart', '-reset_timestamps', '1', `${VOUTDIR}/%10d.mp4`])
+  await ffmpeg.exec(['-i', 'test.avi', '-vn', '-c:a', 'copy', 'audio.m4a'])
   logs.value.push(`Complete transcoding @${segCode}`)
   logs.value.push((await ffmpeg.listDir(VOUTDIR)).filter(x => !x.isDir).map(x => x.name).join('\n'));
+  audio.value = URL.createObjectURL(new Blob([(await ffmpeg.readFile('audio.m4a') as Uint8Array).buffer]))
 }
 </script>
 
