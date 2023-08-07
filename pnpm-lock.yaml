@@ -6,6 +6,18 @@ dependencies:
     version: 3.3.4
 
 devDependencies:
+  '@ffmpeg/core':
+    specifier: ^0.12.1
+    version: 0.12.1
+  '@ffmpeg/core-mt':
+    specifier: ^0.12.1
+    version: 0.12.1
+  '@ffmpeg/ffmpeg':
+    specifier: ^0.12.2
+    version: 0.12.2
+  '@ffmpeg/util':
+    specifier: ^0.12.0
+    version: 0.12.0
   '@vitejs/plugin-vue':
     specifier: ^4.2.3
     version: 4.2.3(vite@4.4.5)(vue@3.3.4)
@@ -241,6 +253,33 @@ packages:
     requiresBuild: true
     dev: true
     optional: true
+
+  /@ffmpeg/core-mt@0.12.1:
+    resolution: {integrity: sha512-J/TwaHjpXJPsSA9SKw/qwEqdzr6/vV/nTrPCv/zmTZ6ho5T7Yd3woZc62mgrsiuWCTY1Rl9Depq7jrz9GMuwZg==}
+    engines: {node: '>=16.6.0'}
+    dev: true
+
+  /@ffmpeg/core@0.12.1:
+    resolution: {integrity: sha512-ptwAAsSsCgyITd1AefLG3g/basdLJZIqce6DR9LWXfnsXfOQkBIOH7fEIxnBJldvN4zAT/7FoC+CQIiuzEOn5A==}
+    engines: {node: '>=16.6.0'}
+    dev: true
+
+  /@ffmpeg/ffmpeg@0.12.2:
+    resolution: {integrity: sha512-ZoOG0nWBjAzgVVTNi0ISGVUkPfGVHEYjZaDW0rL6vgM2IjAwjLmt/ZeHm3IzjCGWF6GRj4auKMYM0WTBp/20IA==}
+    engines: {node: '>=18.17.0'}
+    dependencies:
+      '@ffmpeg/types': 0.12.0
+    dev: true
+
+  /@ffmpeg/types@0.12.0:
+    resolution: {integrity: sha512-AuR4K+L6v1/9hVOsikU4rGGT5nKulQa8HrtYhpgBEq0HojoWB1c9bq3TTkNBpEvS/gC17WDMVJrqIGgXOj1DXA==}
+    engines: {node: '>=16.6.0'}
+    dev: true
+
+  /@ffmpeg/util@0.12.0:
+    resolution: {integrity: sha512-8sHCW8H/ngqVhbRvCCX4e4uDNgZVoz8uNRry1zphIyzdX6flfBa2TmVwJ4g9/Qw//eAubEnuHaSxDGWWxcOTjg==}
+    engines: {node: '>=18.17.0'}
+    dev: true
 
   /@jridgewell/sourcemap-codec@1.4.15:
     resolution: {integrity: sha512-eF2rxCRulEKXHTRiDrDy6erMYWqNw4LPdQ8UQA4huuxaQsVeRPFl2oM8oDGxMFhJUWZf9McpLtJasDDZb/Bpeg==}
