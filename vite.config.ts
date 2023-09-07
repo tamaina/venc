@@ -8,9 +8,12 @@ export default defineConfig({
     headers: {
       'Cross-Origin-Opener-Policy': 'same-origin',
       'Cross-Origin-Embedder-Policy': 'require-corp',
-    }
+    },
   },
   build: {
     assetsInlineLimit: 0,
+  },
+  optimizeDeps: {
+    disabled: true,
   }
 })
